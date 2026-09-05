@@ -59,28 +59,32 @@ window.SITE = {
         date: "May 2021",
         venue: "CHI 2021",
         authors: "With Jessica Van Brummelen",
-        blurb: "A study of how AI curriculum can be integrated into existing Math/ELA/Science subjects"
+        blurb: "A study of how AI curriculum can be integrated into existing Math/ELA/Science subjects",
+        href: "https://dl.acm.org/doi/pdf/10.1145/3411764.3445377"
       },
       {
         title: "A design framework for designing AI learning experiences for K-12",
         date: "Sep 2020",
         venue: "arXiv",
         authors: "With Jessica Van Brummelen and Xiaofei Zhou",
-        blurb: "A synthesis for how to design effective learning experiences that teach AI concepts"
+        blurb: "A synthesis for how to design effective learning experiences that teach AI concepts",
+        href: "https://arxiv.org/pdf/2009.10228"
       },
       {
         title: "Zhorai: Designing a conversational agent for children to explore machine learning concepts",
         date: "Apr 2020",
         venue: "AAAI 2020",
         authors: "With Jessica Van Brummelen, Galit Lukin, Randi Williams, and Cynthia Braezeal",
-        blurb: "A pre-LLM era proof-of-concept for how conversational agents can teach AI"
+        blurb: "A pre-LLM era proof-of-concept for how conversational agents can teach AI",
+        href: "https://ojs.aaai.org/index.php/AAAI/article/view/7061"
       },
       {
         title: "Proxy tasks and subjective measures can be misleading in evaluating explainable AI systems",
         date: "Mar 2020",
         venue: "IUI 2020",
         authors: "With Zana Buçinca, Krzysztof Z Gajos, and Elena L Glassman",
-        blurb: "Won Honorable Mention; a study of how existing methods fall short of evaluating AI systems"
+        blurb: "Won Honorable Mention; a study of how existing methods fall short of evaluating AI systems",
+        href: "https://dl.acm.org/doi/pdf/10.1145/3377325.3377498"
       }
     ]
   },
