@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Phoebe Lin</title>
+<meta name="description" content="Product designer based in the Bay Area. How I work, what I believe, and where I have worked.">
+<meta property="og:title" content="About — Phoebe Lin">
+<meta property="og:description" content="Product designer based in the Bay Area. How I work, what I believe, and where I have worked.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.phoebezlin.com/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&amp;family=Karla:wght@300..700&amp;family=JetBrains+Mono:wght@300..500&amp;display=swap" rel="stylesheet">
+<script src="/content.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { background: #fbfbf9; }
+  a, a:hover { color: inherit; text-decoration: none; }
+  ::selection { background: #e2e1da; }
+  @keyframes riseIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (max-width: 900px) {
+    [data-pad] { padding-left: 20px !important; padding-right: 20px !important; }
+    [data-cols] { grid-template-columns: 1fr !important; gap: 40px !important; }
+    [data-photo] { max-width: 260px; }
+    [data-bio] { font-size: 19px !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family: 'Karla', sans-serif; color: {{ fg }}; background: {{ bg }}; min-height: 100vh; transition: background 420ms ease, color 420ms ease;">
+
+  <div data-pad="1" style="position: sticky; top: 0; z-index: 10; padding: 26px 56px; display: flex; align-items: baseline; justify-content: space-between; background: {{ bg }}; transform: {{ nav }}; transition: transform 420ms cubic-bezier(0.4,0,0.2,1), background 420ms ease;">
+    <a href="/" style="font-family: 'Newsreader', serif; font-size: 26px; letter-spacing: -0.01em;">{{ name }}</a>
+    <span style="display: flex; align-items: center; gap: 28px; font-size: 14px;">
+      <a href="/" style="opacity: 0.5; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 3px; transition: background-size 320ms cubic-bezier(0.4,0,0.2,1), opacity 220ms;" style-hover="opacity: 1; background-size: 100% 1px;">Work</a>
+      <a href="/writing" style="opacity: 0.5; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 3px; transition: background-size 320ms cubic-bezier(0.4,0,0.2,1), opacity 220ms;" style-hover="opacity: 1; background-size: 100% 1px;">Writing</a>
+      <a href="/about" style="background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 3px;">About</a>
+      <button onClick="{{ toggle }}" aria-label="Toggle theme" title="Toggle theme" style="border: 0; background: none; color: inherit; cursor: pointer; font-size: 15px; padding: 4px; line-height: 1; opacity: 0.55; transition: transform 500ms cubic-bezier(0.4,0,0.2,1), opacity 200ms;" style-hover="opacity: 1; transform: rotate(-24deg);">{{ icon }}</button>
+    </span>
+  </div>
+
+  <div data-pad="1" data-cols="1" style="padding: 60px 56px 96px; max-width: 1100px; display: grid; grid-template-columns: 1fr 280px; gap: 72px; align-items: start;">
+
+    <div style="display: flex; flex-direction: column; gap: 52px; animation: riseIn 700ms cubic-bezier(0.2,0.8,0.2,1) both;">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <div style="display: flex; flex-direction: column; gap: 14px; max-width: 560px;">
+          <div style="display: flex; align-items: baseline; gap: 10px; font-size: 14px; opacity: 0.7;">
+            <sc-for list="{{ links }}" as="l" hint-placeholder-count="3">
+              <span style="display: flex; align-items: baseline; gap: 10px;">
+                <a href="{{ l.href }}" style="background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 2px; transition: background-size 320ms cubic-bezier(0.4,0,0.2,1);" style-hover="background-size: 100% 1px;">{{ l.label }}</a>
+                <span style="opacity: 0.35;">{{ l.sep }}</span>
+              </span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.45; margin-top: 22px;">{{ beliefsTitle }}</div>
+
+        <div style="display: flex; flex-direction: column; gap: 28px; max-width: 560px; margin-top: 2px;">
+          <sc-for list="{{ beliefs }}" as="b" hint-placeholder-count="3">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-size: 15.5px;">{{ b.label }}</div>
+              <p style="margin: 0; font-size: 14.5px; line-height: 1.7; opacity: 0.5; text-wrap: pretty;">{{ b.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.45;">EXPERIENCE</div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <sc-for list="{{ roles }}" as="r" hint-placeholder-count="6">
+            <div style="display: grid; grid-template-columns: 76px 1fr; gap: 14px; align-items: baseline;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.04em; opacity: 0.45;">{{ r.year }}</span>
+              <span style="display: flex; flex-direction: column; gap: 2px;">
+                <span style="font-size: 15.5px;">{{ r.role }}</span>
+                <span style="font-size: 14.5px; opacity: 0.5;">{{ r.company }}</span>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+    </div>
+
+    <div data-photo="1" style="display: flex; flex-direction: column; gap: 10px; animation: riseIn 700ms 120ms cubic-bezier(0.2,0.8,0.2,1) both;">
+      <img src="/images/portrait.jpg" alt="Phoebe Lin" style="width: 100%; height: auto; border-radius: 3px; display: block;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.4;">{{ photoCaption }}</div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const S = () => (window.SITE || {});
+
+class Component extends DCLogic {
+  state = { nav: true, dark: (typeof localStorage !== "undefined" && localStorage.getItem("pl-theme") === "dark") };
+
+  componentDidMount() {
+    document.body.style.background = this.state.dark ? "#131312" : "#fbfbf9";
+    this.onContent = () => this.forceUpdate();
+    window.addEventListener("site-content", this.onContent);
+    this.last = window.scrollY;
+    this.onScroll = () => {
+      const y = window.scrollY;
+      const down = y > this.last + 4;
+      const up = y < this.last - 4;
+      if (down || up) this.last = y;
+      const show = y < 40 ? true : down ? false : up ? true : this.state.nav;
+      if (show !== this.state.nav) this.setState({ nav: show });
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll);
+    window.removeEventListener("site-content", this.onContent);
+  }
+
+  toggle = () => {
+    const dark = !this.state.dark;
+    try { localStorage.setItem("pl-theme", dark ? "dark" : "light"); } catch (e) {}
+    document.body.style.background = dark ? "#131312" : "#fbfbf9";
+    this.setState({ dark });
+  };
+
+  renderVals() {
+    return {
+      bg: this.state.dark ? "#131312" : "#fbfbf9",
+      fg: this.state.dark ? "#eceae4" : "#171714",
+      icon: this.state.dark ? "☀" : "☾",
+      toggle: this.toggle,
+      nav: this.state.nav ? "translateY(0)" : "translateY(-102%)",
+      name: S().name,
+      bio: (S().about || {}).bio,
+      photoCaption: (S().about || {}).photoCaption,
+      beliefsTitle: (S().about || {}).beliefsTitle,
+      beliefs: (S().about || {}).beliefs || [],
+      links: ((S().about || {}).links || []).map((l, i, a) => ({ ...l, sep: i < a.length - 1 ? "/" : "" })),
+      roles: (S().about || {}).roles || []
+    };
+  }
+}
+</script>
+</body>
+</html>

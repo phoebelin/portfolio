@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phoebe Lin — Product Designer</title>
+<meta name="description" content="Product designer working on agentic workflows at Roblox. Previously K-12 education at the Chan Zuckerberg Initiative.">
+<meta property="og:title" content="Phoebe Lin — Product Designer">
+<meta property="og:description" content="Product designer working on agentic workflows at Roblox. Previously K-12 education at the Chan Zuckerberg Initiative.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.phoebezlin.com/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&amp;family=Karla:wght@300..700&amp;family=JetBrains+Mono:wght@300..500&amp;display=swap" rel="stylesheet">
+<script src="/content.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { background: #fbfbf9; }
+  a, a:hover { color: inherit; text-decoration: none; }
+  ::selection { background: #e2e1da; }
+  @keyframes riseIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (max-width: 900px) {
+    [data-pad] { padding-left: 20px !important; padding-right: 20px !important; }
+    [data-intro] { font-size: 19px !important; }
+    [data-shots] { grid-template-columns: 1fr !important; }
+    [data-ptitle] { font-size: 24px !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family: 'Karla', sans-serif; color: {{ fg }}; background: {{ bg }}; min-height: 100vh; transition: background 420ms ease, color 420ms ease;">
+
+  <div data-pad="1" style="position: sticky; top: 0; z-index: 10; padding: 26px 56px; display: flex; align-items: baseline; justify-content: space-between; background: {{ bg }}; transform: {{ nav }}; transition: transform 420ms cubic-bezier(0.4,0,0.2,1), background 420ms ease;">
+    <a href="/" style="font-family: 'Newsreader', serif; font-size: 26px; letter-spacing: -0.01em;">{{ name }}</a>
+    <span style="display: flex; align-items: center; gap: 28px; font-size: 14px;">
+      <a href="#work" style="background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 3px;">Work</a>
+      <a href="/writing" style="opacity: 0.5; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 3px; transition: background-size 320ms cubic-bezier(0.4,0,0.2,1), opacity 220ms;" style-hover="opacity: 1; background-size: 100% 1px;">Writing</a>
+      <a href="/about" style="opacity: 0.5; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 3px; transition: background-size 320ms cubic-bezier(0.4,0,0.2,1), opacity 220ms;" style-hover="opacity: 1; background-size: 100% 1px;">About</a>
+      <button onClick="{{ toggle }}" aria-label="Toggle theme" title="Toggle theme" style="border: 0; background: none; color: inherit; cursor: pointer; font-size: 15px; padding: 4px; line-height: 1; opacity: 0.55; transition: transform 500ms cubic-bezier(0.4,0,0.2,1), opacity 200ms;" style-hover="opacity: 1; transform: rotate(-24deg);">{{ icon }}</button>
+    </span>
+  </div>
+
+  <div data-pad="1" style="padding: 60px 56px 96px; display: flex; flex-direction: column; gap: 84px; max-width: 1400px;">
+    <p data-intro="1" style="margin: 0; max-width: 560px; font-family: 'Newsreader', serif; font-size: 23px; line-height: 1.5; font-weight: 300; text-wrap: pretty; animation: riseIn 700ms cubic-bezier(0.2,0.8,0.2,1) both;">{{ intro }}</p>
+
+    <div id="work" style="display: flex; flex-direction: column; gap: 56px; animation: riseIn 700ms 120ms cubic-bezier(0.2,0.8,0.2,1) both;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.45;">Select work</div>
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <div style="display: flex; align-items: baseline; gap: 16px;">
+            <a href="{{ p.href }}" data-ptitle="1" style="font-family: 'Newsreader', serif; font-size: 27px; letter-spacing: -0.01em; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 2px; transition: background-size 340ms cubic-bezier(0.4,0,0.2,1);" style-hover="background-size: 100% 1px;">{{ p.title }}</a>
+            <span style="font-size: 13px; opacity: 0.45;">{{ p.date }}</span>
+          </div>
+          <p style="margin: 0; max-width: 640px; font-size: 15px; line-height: 1.6; opacity: 0.75; text-wrap: pretty;">{{ p.teaser }} <a href="{{ p.href }}" style="white-space: nowrap; background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 300ms;" style-hover="background-size: 0% 1px;">Read more</a></p>
+          <div data-shots="1" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 6px; max-width: 1100px;">
+            <sc-for list="{{ p.assets }}" as="a" hint-placeholder-count="3">
+              <a href="{{ a.href }}" style="display: block; aspect-ratio: 4 / 3; border-radius: 3px; background: color-mix(in srgb, currentColor 9%, transparent); transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1), background 320ms;" style-hover="transform: translateY(-4px); background: color-mix(in srgb, currentColor 16%, transparent);"></a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: baseline; padding-top: 28px; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); font-size: 14px; max-width: 1100px;">
+      <span style="opacity: 0.5;">{{ footerNote }}</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const CASE = "/work";
+
+const S = () => (window.SITE || {});
+
+
+class Component extends DCLogic {
+  state = { nav: true, dark: (typeof localStorage !== "undefined" && localStorage.getItem("pl-theme") === "dark") };
+
+  componentDidMount() {
+    document.body.style.background = this.state.dark ? "#131312" : "#fbfbf9";
+    this.onContent = () => this.forceUpdate();
+    window.addEventListener("site-content", this.onContent);
+    try {
+      if (sessionStorage.getItem("pl-back") === "1") {
+        const y = parseInt(sessionStorage.getItem("pl-home-scroll") || "0", 10);
+        sessionStorage.removeItem("pl-back");
+        if (y > 0) this.restoreTo(y);
+      }
+    } catch (e) {}
+    this.last = window.scrollY;
+    this.onScroll = () => {
+      const y = window.scrollY;
+      if (!this.restoring) { try { sessionStorage.setItem("pl-home-scroll", String(y)); } catch (e) {} }
+      const down = y > this.last + 4;
+      const up = y < this.last - 4;
+      if (down || up) this.last = y;
+      const show = y < 40 ? true : down ? false : up ? true : this.state.nav;
+      if (show !== this.state.nav) this.setState({ nav: show });
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+  }
+
+  restoreTo(y) {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    this.restoring = true;
+    const deadline = Date.now() + 3000;
+    const tick = () => {
+      const fits = document.documentElement.scrollHeight >= y + window.innerHeight;
+      if (fits) window.scrollTo(0, y);
+      const done = (fits && Math.abs(window.scrollY - y) < 2) || Date.now() > deadline;
+      if (done) {
+        this.restoring = false;
+        this.last = window.scrollY;
+        if (this.ro) { this.ro.disconnect(); this.ro = null; }
+        return;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    if (typeof ResizeObserver !== "undefined") {
+      this.ro = new ResizeObserver(() => { if (this.restoring) tick(); });
+      this.ro.observe(document.documentElement);
+    }
+    window.addEventListener("load", tick, { once: true });
+  }
+
+  componentWillUnmount() {
+    if (this.ro) { this.ro.disconnect(); this.ro = null; }
+    this.restoring = false;
+    window.removeEventListener("scroll", this.onScroll);
+    window.removeEventListener("site-content", this.onContent);
+  }
+
+  toggle = () => {
+    const dark = !this.state.dark;
+    try { localStorage.setItem("pl-theme", dark ? "dark" : "light"); } catch (e) {}
+    document.body.style.background = dark ? "#131312" : "#fbfbf9";
+    this.setState({ dark });
+  };
+
+  renderVals() {
+    return {
+      bg: this.state.dark ? "#131312" : "#fbfbf9",
+      fg: this.state.dark ? "#eceae4" : "#171714",
+      icon: this.state.dark ? "☀" : "☾",
+      toggle: this.toggle,
+      nav: this.state.nav ? "translateY(0)" : "translateY(-102%)",
+      name: S().name,
+      email: S().email,
+      mailto: "mailto:" + (S().email || ""),
+      footerNote: S().footerNote,
+      intro: (S().home || {}).intro,
+      projects: ((S().home || {}).projects || []).map((p) => Object.assign({}, p, {
+        href: p.slug ? CASE + "/" + p.slug : CASE,
+        assets: Array.from({ length: p.shots || 3 }).map(() => ({
+          href: p.slug ? CASE + "/" + p.slug : CASE
+        }))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
