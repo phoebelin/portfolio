@@ -10,7 +10,11 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.phoebezlin.com/images/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="icon" media="(prefers-color-scheme: dark)" type="image/png" href="/favicon-32-dark.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/support.js"></script>
 </head>
 <body>
@@ -26,6 +30,8 @@
   a, a:hover { color: inherit; text-decoration: none; }
   ::selection { background: #e2e1da; }
   @keyframes riseIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes popIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+  @keyframes veilIn { from { opacity: 0; } to { opacity: 1; } }
   @media (max-width: 900px) {
     [data-pad] { padding-left: 20px !important; padding-right: 20px !important; }
     [data-intro] { font-size: 19px !important; }
@@ -61,7 +67,11 @@
           <p style="margin: 0; max-width: clamp(560px, 50vw, 760px); font-size: 15px; line-height: 1.6; opacity: 0.75; text-wrap: pretty;">{{ p.teaser }} <a href="{{ p.href }}" style="white-space: nowrap; background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 300ms;" style-hover="background-size: 0% 1px;">Read more</a></p>
           <div data-shots="1" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 6px;">
             <sc-for list="{{ p.assets }}" as="a" hint-placeholder-count="3">
-              <a href="{{ a.href }}" style="display: block; aspect-ratio: 4 / 3; border-radius: 3px; background: color-mix(in srgb, currentColor 9%, transparent); transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1), background 320ms;" style-hover="transform: translateY(-4px); background: color-mix(in srgb, currentColor 16%, transparent);"></a>
+              <button onClick="{{ a.open }}" style="border: 0; padding: 0; display: block; position: relative; overflow: hidden; width: 100%; cursor: zoom-in; aspect-ratio: 4 / 3; border-radius: 3px; background: {{ a.tile }}; transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1), box-shadow 320ms;" style-hover="transform: translateY(-4px); box-shadow: 0 10px 30px rgba(18,18,16,0.14);">
+                <sc-if value="{{ a.isVideo }}" hint-placeholder-val="{{ false }}">
+                  <video src="{{ a.src }}" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+                </sc-if>
+              </button>
             </sc-for>
           </div>
         </div>
@@ -73,6 +83,22 @@
     </div>
   </div>
 
+  <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ lbClose }}" style="position: fixed; inset: 0; z-index: 40; background: rgba(18,18,16,0.84); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 48px; cursor: zoom-out; animation: veilIn 240ms ease both;">
+      <div style="width: min(1040px, 100%); display: flex; flex-direction: column; gap: 14px; animation: popIn 320ms cubic-bezier(0.2,0.8,0.2,1) both;">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; color: #f6f5f1; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em;">
+          <span>{{ lbCaption }}</span>
+          <span style="opacity: 0.6;">{{ lbCounter }} · arrow keys · esc</span>
+        </div>
+        <div style="position: relative; aspect-ratio: 16 / 10; background: {{ lbTile }}; border-radius: 4px; overflow: hidden;">
+          <sc-if value="{{ lbVideo }}" hint-placeholder-val="{{ false }}">
+            <video src="{{ lbSrc }}" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;"></video>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}">
@@ -82,7 +108,7 @@ const S = () => (window.SITE || {});
 
 
 class Component extends DCLogic {
-  state = { nav: true, dark: (typeof localStorage !== "undefined" && localStorage.getItem("pl-theme") === "dark") };
+  state = { nav: true, lb: null, dark: (typeof localStorage !== "undefined" && localStorage.getItem("pl-theme") === "dark") };
 
   componentDidMount() {
     document.body.style.background = this.state.dark ? "#131312" : "#fbfbf9";
@@ -106,6 +132,23 @@ class Component extends DCLogic {
       if (show !== this.state.nav) this.setState({ nav: show });
     };
     window.addEventListener("scroll", this.onScroll, { passive: true });
+    this.onKey = (e) => {
+      if (this.state.lb === null) return;
+      if (e.key === "Escape") this.setState({ lb: null });
+      if (e.key === "ArrowRight") this.step(1);
+      if (e.key === "ArrowLeft") this.step(-1);
+    };
+    window.addEventListener("keydown", this.onKey);
+  }
+
+  step(d) {
+    const projects = (S().home || {}).projects || [];
+    this.setState((s) => {
+      if (s.lb === null) return null;
+      const p = projects[s.lb.p] || {};
+      const n = (p.images && p.images.length) || p.shots || 3;
+      return { lb: { p: s.lb.p, i: (s.lb.i + d + n) % n } };
+    });
   }
 
   restoreTo(y) {
@@ -137,6 +180,7 @@ class Component extends DCLogic {
     this.restoring = false;
     window.removeEventListener("scroll", this.onScroll);
     window.removeEventListener("site-content", this.onContent);
+    window.removeEventListener("keydown", this.onKey);
   }
 
   toggle = () => {
@@ -147,24 +191,48 @@ class Component extends DCLogic {
   };
 
   renderVals() {
-    return {
-      bg: this.state.dark ? "#131312" : "#fbfbf9",
-      fg: this.state.dark ? "#eceae4" : "#171714",
-      icon: this.state.dark ? "☀" : "☾",
+    const s = this.state;
+    const TINT = "color-mix(in srgb, currentColor 9%, transparent)";
+    const isVid = (u) => /\.(mp4|webm|mov|m4v)$/i.test(u || "");
+    const projects = (S().home || {}).projects || [];
+    const v = {
+      bg: s.dark ? "#131312" : "#fbfbf9",
+      fg: s.dark ? "#eceae4" : "#171714",
+      icon: s.dark ? "☀" : "☾",
       toggle: this.toggle,
-      nav: this.state.nav ? "translateY(0)" : "translateY(-102%)",
+      nav: s.nav ? "translateY(0)" : "translateY(-102%)",
       name: S().name,
       email: S().email,
       mailto: "mailto:" + (S().email || ""),
       footerNote: S().footerNote,
       intro: (S().home || {}).intro,
-      projects: ((S().home || {}).projects || []).map((p) => Object.assign({}, p, {
+      projects: projects.map((p, pi) => Object.assign({}, p, {
         href: p.slug ? CASE + "/" + p.slug : CASE,
-        assets: Array.from({ length: p.shots || 3 }).map(() => ({
-          href: p.slug ? CASE + "/" + p.slug : CASE
-        }))
-      }))
+        assets: Array.from({ length: (p.images && p.images.length) || p.shots || 3 }).map((_, ai) => {
+          const src = (p.images && p.images[ai]) || "";
+          const video = isVid(src);
+          return {
+            src: src,
+            isVideo: video,
+            tile: (src && !video) ? ("url(" + src + ") center/cover no-repeat, " + TINT) : TINT,
+            open: () => this.setState({ lb: { p: pi, i: ai } })
+          };
+        })
+      })),
+      lbOpen: s.lb !== null
     };
+    if (s.lb !== null) {
+      const p = projects[s.lb.p] || {};
+      const src = (p.images && p.images[s.lb.i]) || "";
+      const video = isVid(src);
+      v.lbCaption = p.title || "";
+      v.lbCounter = (s.lb.i + 1) + " / " + ((p.images && p.images.length) || p.shots || 3);
+      v.lbSrc = src;
+      v.lbVideo = video;
+      v.lbTile = (src && !video) ? ("url(" + src + ") center/contain no-repeat, #2a2a27") : "#2a2a27";
+      v.lbClose = () => this.setState({ lb: null });
+    }
+    return v;
   }
 }
 </script>

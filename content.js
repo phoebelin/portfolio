@@ -10,13 +10,17 @@ window.SITE = {
 
   home: {
     intro: "Currently, I design agentic workflows to help creators grow and scale their games as businesses at Roblox. Before that, I designed for K-12 education at Chan Zuckerberg Initiative. As a designer, I'm interested in how we design for uncertainty and learning in the era of AI. I'm good at taking complex, ambiguous spaces, and turning it into things that are intuitive and simple.",
-    // shots = how many image placeholders sit under each project
+    // images = the picture OR video files shown under each project (also opened
+    //   in the lightbox). Drop files in /images/work/<slug>/ and list them here
+    //   in the order you want. .mp4/.webm/.mov files autoplay on a silent loop,
+    //   like a gif. Any slot with no file yet shows a plain placeholder box.
+    //   shots = fallback count of placeholders when a project has no images yet.
     projects: [
-      { slug: "agentic-hub", title: "Roblox Agentic Creator Hub", date: "Aug 2026", shots: 3, teaser: "I led design for Agentic Hub, a new way for creators to create and scale their games with agents. I defined the chat UI on web, unified interactions across Studio and mobile, and shipped features like Canvas, multi-conversations, \"thinking\", Q&A, and more." },
-      { slug: "analytics", title: "Roblox Analytics & Observability", date: "Mar 2026", shots: 3, teaser: "I created the data visualization system 0 to 1 and scaled it for all teams at Roblox to adopt. Our team built out a full analytics suite, complete with customizable dashboards and observability, becoming one of the most beloved teams by our creators." },
-      { slug: "zhorai", title: "Zhorai", date: "Oct 2025", shots: 3, teaser: "I founded a K-12 AI literacy platform that utilizes novel conversational agent interactions to engage learners with basic AI concepts and provides scaffolded opportunities to create with AI. Ran a pilot program with 10+ families and initiated partnerships with schools." },
-      { slug: "summit", title: "CZI Summit Learning Platform", date: "Feb 2025", shots: 3, teaser: "I co-led the rearchitecture of our learning platform to accommodate any type of curricula and assessments." },
-      { slug: "self-directed", title: "CZI Self-Directed Learning", date: "Feb 2025", shots: 3, teaser: "I was founding designer on a new product bet where we explored how to empower students to take charge of their own learning. We created an interest exploration tool that exposed students to new fields and ideas, and then connected established interests to skills they practiced in class." }
+      { slug: "agentic-hub", title: "Roblox Agentic Creator Hub", date: "Aug 2026", shots: 3, images: ["/images/work/agentic-hub/1.mp4", "/images/work/agentic-hub/2.jpg", "/images/work/agentic-hub/3.jpg"], teaser: "I led design for Agentic Hub, a new way for creators to create and scale their games with agents. I defined the chat UI on web, unified interactions across Studio and mobile, and shipped features like Canvas, multi-conversations, \"thinking\", Q&A, and more." },
+      { slug: "analytics", title: "Roblox Analytics & Observability", date: "Mar 2026", shots: 3, images: ["/images/work/analytics/1.jpg", "/images/work/analytics/2.jpg", "/images/work/analytics/3.jpg"], teaser: "I created the data visualization system 0 to 1 and scaled it for all teams at Roblox to adopt. Our team built out a full analytics suite, complete with customizable dashboards and observability, becoming one of the most beloved teams by our creators." },
+      { slug: "zhorai", title: "Zhorai", date: "Oct 2025", shots: 3, images: ["/images/work/zhorai/1.jpg", "/images/work/zhorai/2.jpg", "/images/work/zhorai/3.jpg"], teaser: "I founded a K-12 AI literacy platform that utilizes novel conversational agent interactions to engage learners with basic AI concepts and provides scaffolded opportunities to create with AI. Ran a pilot program with 10+ families and initiated partnerships with schools." },
+      { slug: "summit", title: "CZI Summit Learning Platform", date: "Feb 2025", shots: 3, images: ["/images/work/summit/1.jpg", "/images/work/summit/2.jpg", "/images/work/summit/3.jpg"], teaser: "I co-led the rearchitecture of our learning platform to accommodate any type of curricula and assessments." },
+      { slug: "self-directed", title: "CZI Self-Directed Learning", date: "Feb 2025", shots: 3, images: ["/images/work/self-directed/1.jpg", "/images/work/self-directed/2.jpg", "/images/work/self-directed/3.jpg"], teaser: "I was founding designer on a new product bet where we explored how to empower students to take charge of their own learning. We created an interest exploration tool that exposed students to new fields and ideas, and then connected established interests to skills they practiced in class." }
     ]
   },
 
@@ -96,40 +100,46 @@ window.SITE = {
 
   "agentic-hub": {
     title: "Agentic Hub",
-    subtitle: "A workspace where creators brief an agent, watch it work, and keep the final call on every change.",
-    nextTitle: "Creator Payouts",
+    subtitle: "A new interaction model for Roblox creators to create and scale their games with agents",
+    nextTitle: "Roblox Analytics & Observability",
 
-    context: "Creators ran their games as businesses with tools built for hobby projects. Every pricing change meant hand-editing the same six screens. The agent could do that work — the question was how much a creator would let it do unattended.",
-    outcome: "12k studios ran an agent task in the first quarter; 71% reviewed the diff before accepting. Trust came from the diff being legible, not the model being right. Given the time again, I'd have tested the review surface first.",
-    // shorter versions shown on phones
-    contextShort: "Creators ran their games as businesses with tools built for hobby projects. Every pricing change meant hand-editing the same six screens.",
-    outcomeShort: "12k studios ran an agent task in the first quarter; 71% reviewed the diff before accepting. Trust came from the diff being legible, not the model being right.",
+    context: "Today, running a business on Roblox requires a lot of manual, repetitive work, ranging from liveops management to safety and compliance. Our vision is to make Hub the place where studios can run their business with a team of humans and AI agents working side by side.",
+    outcome: "Rolled out as a Creator beta with 40% stickiness and 80% positive rating. Recommendations led to downstream +7.2% lift in monetization features.",
 
     meta: [
-      { label: "Role", value: "Lead product designer" },
+      { label: "Role", value: "Product design lead" },
       { label: "Team", value: "1 designer, 4 engineers, 1 PM" },
       { label: "Timeline", value: "Jan – Aug 2026" },
-      { label: "Outcome", value: "Shipped to 12k studios" }
+      { label: "Outcome", value: "Rolled out as a Creator beta with 40% stickiness and 80% positive rating. Recommendations led to downstream +7.2% lift in monetization features." }
     ],
 
     decisions: [
-      { num: "01", title: "The agent proposes; the creator commits.", body: "Direct edits with undo tested badly — every tester hit undo inside ten minutes. A proposed diff cost one click and bought the feature its credibility." },
-      { num: "02", title: "Show the work, not the confidence.", body: "Confidence scores read as promises. A plain list of what the agent looked at answered the same question without a claim we couldn't keep." },
-      { num: "03", title: "One task at a time, on purpose.", body: "Parallel runs were easy to build and brutal to read. Serial runs made the log legible and made rollback mean something." }
+      { num: "01", title: "The agent works; the creator leads", body: "How do we balance agents working autonomously towards a goal while surfacing important decisions appropriately for creator approvel?" },
+      { num: "02", title: "A unified audit ledger", body: "When agents make mistakes, how do we surface them to the creator in a way that is easy to understand and action on?" },
+      { num: "03", title: "Vertically integrated context", body: "How do we capture value that leans into the strengths of the Roblox ecosystem?" }
     ],
 
-    /* Gallery: col = how many of 6 columns wide, ratio = image shape.
-       Add or remove a line to add or remove an image. */
+    /* Gallery: col = how many of 6 columns wide, ratio = image shape,
+       caption = the little label under it, src = the image OR video file.
+       A tile with NO src reuses this project's work-page images in order — so
+       the first three tiles below inherit the home images (1.jpg–3.jpg); upload
+       those once, in /images/work/agentic-hub/, and they show in both places.
+       For the other tiles, drop files in /images/work/agentic-hub/gallery/ and
+       point src at them. .mp4/.webm/.mov files autoplay on a silent loop, like a
+       gif; a tile with no file yet shows a plain placeholder box. Add or remove
+       a line to add or remove a tile.
+       Layout is landscape-first: span 6 = full-width, span 3 = half, span 2 =
+       third; keep ratio at 16/10 or 16/9 for landscape shots. */
     gallery: [
-      { col: "span 4", ratio: "16 / 10", caption: "01 — Run log, mid-task", wide: "1" },
-      { col: "span 2", ratio: "3 / 4", caption: "02 — Task brief" },
-      { col: "span 2", ratio: "1 / 1", caption: "03 — Diff review" },
-      { col: "span 2", ratio: "1 / 1", caption: "04 — Accept / revise" },
-      { col: "span 2", ratio: "1 / 1", caption: "05 — Empty state" },
-      { col: "span 3", ratio: "16 / 10", caption: "06 — Pricing pass" },
-      { col: "span 3", ratio: "16 / 10", caption: "07 — Localization pass" },
-      { col: "span 2", ratio: "3 / 4", caption: "08 — Mobile check" },
-      { col: "span 4", ratio: "16 / 9", caption: "09 — Explorations, cut", wide: "1" }
+      { col: "span 3", ratio: "16 / 10", caption: "01 — Run log, mid-task" },
+      { col: "span 3", ratio: "16 / 10", caption: "02 — Task brief" },
+      { col: "span 3", ratio: "16 / 10", caption: "03 — Diff review" },
+      { col: "span 3", ratio: "16 / 10", caption: "04 — Accept / revise", src: "/images/work/agentic-hub/gallery/04.jpg" },
+      { col: "span 2", ratio: "16 / 10", caption: "05 — Empty state", src: "/images/work/agentic-hub/gallery/05.jpg" },
+      { col: "span 2", ratio: "16 / 10", caption: "06 — Pricing pass", src: "/images/work/agentic-hub/gallery/06.jpg" },
+      { col: "span 2", ratio: "16 / 10", caption: "07 — Localization pass", src: "/images/work/agentic-hub/gallery/07.jpg" },
+      { col: "span 3", ratio: "16 / 10", caption: "08 — Mobile check", src: "/images/work/agentic-hub/gallery/08.jpg" },
+      { col: "span 3", ratio: "16 / 10", caption: "09 — Explorations, cut", src: "/images/work/agentic-hub/gallery/09.jpg" }
     ]
   }
 

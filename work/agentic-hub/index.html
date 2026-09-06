@@ -10,7 +10,11 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.phoebezlin.com/images/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="icon" media="(prefers-color-scheme: dark)" type="image/png" href="/favicon-32-dark.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/support.js"></script>
 </head>
 <body>
@@ -64,18 +68,9 @@
       </sc-for>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-      <sc-for list="{{ mobileTop }}" as="g" hint-placeholder-count="3">
-        <div style="grid-column: {{ g.col }}; display: flex; flex-direction: column; gap: 6px;">
-          <button onClick="{{ g.open }}" style="border: 0; padding: 0; width: 100%; cursor: zoom-in; aspect-ratio: {{ g.ratio }}; border-radius: 3px; background: color-mix(in srgb, currentColor 9%, transparent); transition: background 300ms;" style-active="background: color-mix(in srgb, currentColor 18%, transparent);"></button>
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.05em; opacity: 0.42;">{{ g.caption }}</div>
-        </div>
-      </sc-for>
-    </div>
-
     <div style="display: flex; flex-direction: column; gap: 6px;">
       <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.45;">Context</div>
-      <p style="margin: 0; font-size: 14.5px; line-height: 1.62; opacity: 0.82; text-wrap: pretty;">{{ contextShort }}</p>
+      <p style="margin: 0; font-size: 14.5px; line-height: 1.62; opacity: 0.82; text-wrap: pretty;">{{ context }}</p>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 14px;">
@@ -88,10 +83,27 @@
       </sc-for>
     </div>
 
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+      <sc-for list="{{ mobileTop }}" as="g" hint-placeholder-count="3">
+        <div style="grid-column: {{ g.col }}; display: flex; flex-direction: column; gap: 6px;">
+          <button onClick="{{ g.open }}" style="border: 0; padding: 0; position: relative; overflow: hidden; width: 100%; cursor: zoom-in; aspect-ratio: {{ g.ratio }}; border-radius: 3px; background: {{ g.tile }}; transition: transform 300ms;" style-active="transform: scale(0.985);">
+            <sc-if value="{{ g.isVideo }}" hint-placeholder-val="{{ false }}">
+              <video src="{{ g.src }}" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+            </sc-if>
+          </button>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.05em; opacity: 0.42;">{{ g.caption }}</div>
+        </div>
+      </sc-for>
+    </div>
+
     <div style="display: flex; flex-direction: column; gap: 12px;">
       <sc-for list="{{ mobileRest }}" as="g" hint-placeholder-count="6">
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <button onClick="{{ g.open }}" style="border: 0; padding: 0; width: 100%; cursor: zoom-in; aspect-ratio: {{ g.ratio }}; border-radius: 3px; background: color-mix(in srgb, currentColor 9%, transparent); transition: background 300ms;" style-active="background: color-mix(in srgb, currentColor 18%, transparent);"></button>
+          <button onClick="{{ g.open }}" style="border: 0; padding: 0; position: relative; overflow: hidden; width: 100%; cursor: zoom-in; aspect-ratio: {{ g.ratio }}; border-radius: 3px; background: {{ g.tile }}; transition: transform 300ms;" style-active="transform: scale(0.985);">
+            <sc-if value="{{ g.isVideo }}" hint-placeholder-val="{{ false }}">
+              <video src="{{ g.src }}" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+            </sc-if>
+          </button>
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.05em; opacity: 0.42;">{{ g.caption }}</div>
         </div>
       </sc-for>
@@ -99,7 +111,7 @@
 
     <div style="display: flex; flex-direction: column; gap: 6px;">
       <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.45;">Outcome &amp; learnings</div>
-      <p style="margin: 0; font-size: 14.5px; line-height: 1.62; opacity: 0.82; text-wrap: pretty;">{{ outcomeShort }}</p>
+      <p style="margin: 0; font-size: 14.5px; line-height: 1.62; opacity: 0.82; text-wrap: pretty;">{{ outcome }}</p>
     </div>
 
     <a href="/work/agentic-hub" style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 18px; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);">
@@ -157,7 +169,11 @@
     <div data-gallery="1" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;">
       <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="9">
         <div data-wide="{{ g.wide }}" style="grid-column: {{ g.col }}; display: flex; flex-direction: column; gap: 7px;">
-          <button onClick="{{ g.open }}" style="border: 0; padding: 0; width: 100%; cursor: zoom-in; aspect-ratio: {{ g.ratio }}; border-radius: 3px; background: color-mix(in srgb, currentColor 9%, transparent); transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1), background 320ms;" style-hover="transform: translateY(-4px); background: color-mix(in srgb, currentColor 16%, transparent);"></button>
+          <button onClick="{{ g.open }}" style="border: 0; padding: 0; position: relative; overflow: hidden; width: 100%; cursor: zoom-in; aspect-ratio: {{ g.ratio }}; border-radius: 3px; background: {{ g.tile }}; transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1), box-shadow 320ms;" style-hover="transform: translateY(-4px); box-shadow: 0 10px 30px rgba(18,18,16,0.14);">
+            <sc-if value="{{ g.isVideo }}" hint-placeholder-val="{{ false }}">
+              <video src="{{ g.src }}" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+            </sc-if>
+          </button>
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; opacity: 0.42;">{{ g.caption }}</div>
         </div>
       </sc-for>
@@ -171,7 +187,11 @@
           <span>{{ lbCaption }}</span>
           <span style="opacity: 0.6;">{{ lbCounter }} · arrow keys · esc</span>
         </div>
-        <div style="aspect-ratio: 16 / 10; background: #2a2a27; border-radius: 4px;"></div>
+        <div style="position: relative; aspect-ratio: 16 / 10; background: {{ lbTile }}; border-radius: 4px; overflow: hidden;">
+          <sc-if value="{{ lbVideo }}" hint-placeholder-val="{{ false }}">
+            <video src="{{ lbSrc }}" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;"></video>
+          </sc-if>
+        </div>
       </div>
     </div>
   </sc-if>
@@ -245,18 +265,32 @@ class Component extends DCLogic {
     const s = this.state;
     const CS = STUDY();
     const GALLERY = CS.gallery || [];
+    const TINT = "color-mix(in srgb, currentColor 9%, transparent)";
+    const isVid = (u) => /\.(mp4|webm|mov|m4v)$/i.test(u || "");
+    const media = (src) => {
+      const video = isVid(src);
+      return {
+        src: src || "",
+        isVideo: video,
+        tile: (src && !video) ? ("url(" + src + ") center/cover no-repeat, " + TINT) : TINT
+      };
+    };
+    // Gallery tiles reuse the work-page images for this project (matched by
+    // slug) when they don't set their own src — so the first few tiles share
+    // the same files as the home page and you never upload duplicates.
+    const HOME = (S().home || {}).projects || [];
+    const WORK = ((SLUG && HOME.find((p) => p.slug === SLUG)) || HOME[0] || {}).images || [];
+    const srcFor = (i, item) => (item && item.src) || WORK[i] || "";
     const v = {
       name: S().name,
       title: CS.title,
       subtitle: CS.subtitle,
       nextTitle: CS.nextTitle,
       context: CS.context,
-      contextShort: CS.contextShort,
       outcome: CS.outcome,
-      outcomeShort: CS.outcomeShort,
       meta: CS.meta || [],
       decisions: CS.decisions || [],
-      gallery: GALLERY.map((g, i) => Object.assign({}, g, { open: () => this.setState({ lb: i }) })),
+      gallery: GALLERY.map((g, i) => Object.assign({}, g, media(srcFor(i, g)), { open: () => this.setState({ lb: i }) })),
       bg: s.dark ? "#131312" : "#fbfbf9",
       fg: s.dark ? "#eceae4" : "#171714",
       icon: s.dark ? "☀" : "☾",
@@ -265,12 +299,18 @@ class Component extends DCLogic {
       nav: s.nav ? "translateY(0)" : "translateY(-102%)",
       lbOpen: s.lb !== null
     };
-    const g = (i, col, ratio) => Object.assign({}, GALLERY[i], { col, ratio, open: () => this.setState({ lb: i }) });
-    v.mobileTop = [g(0, "span 2", "16 / 10"), g(1, "span 1", "1 / 1"), g(2, "span 1", "1 / 1")];
-    v.mobileRest = [3, 4, 5, 6, 7, 8].map((i) => g(i, "span 1", i === 7 ? "3 / 4" : "16 / 10"));
+    const g = (i, col, ratio) => Object.assign({}, GALLERY[i], media(srcFor(i, GALLERY[i] || {})), { col, ratio, open: () => this.setState({ lb: i }) });
+    v.mobileTop = [g(0, "span 2", "16 / 10"), g(1, "span 2", "16 / 10"), g(2, "span 2", "16 / 10")];
+    v.mobileRest = [3, 4, 5, 6, 7, 8].map((i) => g(i, "span 1", "16 / 10"));
     if (s.lb !== null) {
-      v.lbCaption = GALLERY[s.lb].caption;
+      const cur = GALLERY[s.lb] || {};
+      const csrc = srcFor(s.lb, cur);
+      const m = media(csrc);
+      v.lbCaption = cur.caption;
       v.lbCounter = (s.lb + 1) + " / " + GALLERY.length;
+      v.lbSrc = m.src;
+      v.lbVideo = m.isVideo;
+      v.lbTile = (csrc && !m.isVideo) ? ("url(" + csrc + ") center/contain no-repeat, #2a2a27") : "#2a2a27";
       v.lbClose = () => this.setState({ lb: null });
     }
     return v;
