@@ -223,7 +223,7 @@ class Component extends DCLogic {
   toggle = () => {
     const dark = !this.state.dark;
     try { localStorage.setItem("pl-theme", dark ? "dark" : "light"); } catch (e) {}
-    document.body.style.background = dark ? "#131312" : "#fbfbf9";
+    document.body.style.background = dark ? "#1d1c1a" : "#fbfbf9";
     this.setState({ dark });
   };
 
@@ -240,7 +240,7 @@ class Component extends DCLogic {
   };
 
   componentDidMount() {
-    document.body.style.background = this.state.dark ? "#131312" : "#fbfbf9";
+    document.body.style.background = this.state.dark ? "#1d1c1a" : "#fbfbf9";
     if (typeof IntersectionObserver !== "undefined") {
       this.vio = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
@@ -329,7 +329,7 @@ class Component extends DCLogic {
       meta: CS.meta || [],
       decisions: (CS.decisions || []).map((d) => Object.assign({}, d, { title: rich(d.title), body: rich(d.body) })),
       gallery: GALLERY.map((g, i) => Object.assign({}, g, media(srcFor(i, g)), { open: () => this.setState({ lb: i }) })),
-      bg: s.dark ? "#131312" : "#fbfbf9",
+      bg: s.dark ? "#1d1c1a" : "#fbfbf9",
       fg: s.dark ? "#eceae4" : "#171714",
       icon: s.dark ? "☀︎" : "☾",
       toggle: this.toggle,

@@ -91,7 +91,7 @@ class Component extends DCLogic {
   state = { nav: true, dark: (typeof localStorage !== "undefined" && localStorage.getItem("pl-theme") === "dark") };
 
   componentDidMount() {
-    document.body.style.background = this.state.dark ? "#131312" : "#fbfbf9";
+    document.body.style.background = this.state.dark ? "#1d1c1a" : "#fbfbf9";
     this.onContent = () => this.forceUpdate();
     window.addEventListener("site-content", this.onContent);
     this.last = window.scrollY;
@@ -114,13 +114,13 @@ class Component extends DCLogic {
   toggle = () => {
     const dark = !this.state.dark;
     try { localStorage.setItem("pl-theme", dark ? "dark" : "light"); } catch (e) {}
-    document.body.style.background = dark ? "#131312" : "#fbfbf9";
+    document.body.style.background = dark ? "#1d1c1a" : "#fbfbf9";
     this.setState({ dark });
   };
 
   renderVals() {
     return {
-      bg: this.state.dark ? "#131312" : "#fbfbf9",
+      bg: this.state.dark ? "#1d1c1a" : "#fbfbf9",
       fg: this.state.dark ? "#eceae4" : "#171714",
       icon: this.state.dark ? "☀︎" : "☾",
       toggle: this.toggle,
