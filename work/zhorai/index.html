@@ -352,7 +352,7 @@ class Component extends DCLogic {
       gallery: GALLERY.map((g, i) => Object.assign({}, g, media(srcFor(i, g)), { open: () => this.setState({ lb: i, sound: false }) })),
       bg: s.dark ? "#131312" : "#fbfbf9",
       fg: s.dark ? "#eceae4" : "#171714",
-      icon: s.dark ? "☀" : "☾",
+      icon: s.dark ? "☀︎" : "☾",
       toggle: this.toggle,
       markBack: this.markBack,
       nav: s.nav ? "translateY(0)" : "translateY(-102%)",
