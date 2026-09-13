@@ -36,14 +36,21 @@
     [data-photo] { max-width: 340px; justify-self: end; }
     [data-bio] { font-size: 19px !important; }
   }
+  /* Narrow phones (e.g. iPhone 12/13/14 Pro at 390px) run out of room in the
+     nav, crowding the name against the links. Trim both a touch to restore the
+     breathing room wider phones already have. */
+  @media (max-width: 400px) {
+    [data-nav-name] { font-size: 24px !important; }
+    [data-nav-links] { gap: 24px !important; }
+  }
 </style>
 </helmet>
 
 <div style="font-family: 'Karla', sans-serif; color: {{ fg }}; background: {{ bg }}; min-height: 100vh; transition: background 420ms ease, color 420ms ease;">
 
   <div data-pad="1" style="position: sticky; top: 0; z-index: 10; padding: 26px 56px; display: flex; align-items: baseline; justify-content: space-between; background: {{ bg }}; transform: {{ nav }}; transition: transform 420ms cubic-bezier(0.4,0,0.2,1), background 420ms ease;">
-    <a href="/" style="font-family: 'Newsreader', serif; font-size: 26px; letter-spacing: -0.01em;">{{ name }}</a>
-    <span style="display: flex; align-items: center; gap: 28px; font-size: 14px;">
+    <a href="/" data-nav-name="1" style="font-family: 'Newsreader', serif; font-size: 26px; letter-spacing: -0.01em;">{{ name }}</a>
+    <span data-nav-links="1" style="display: flex; align-items: center; gap: 28px; font-size: 14px;">
       <a href="/" style="opacity: 0.5; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 3px; transition: background-size 320ms cubic-bezier(0.4,0,0.2,1), opacity 220ms;" style-hover="opacity: 1; background-size: 100% 1px;">Work</a>
       <a href="/writing" style="opacity: 0.5; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 3px; transition: background-size 320ms cubic-bezier(0.4,0,0.2,1), opacity 220ms;" style-hover="opacity: 1; background-size: 100% 1px;">Writing</a>
       <a href="/about" style="background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 3px;">About</a>
