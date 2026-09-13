@@ -21,8 +21,8 @@ window.SITE = {
       { slug: "agentic-hub", title: "Roblox Agentic Creator Hub", date: "Aug 2026", shots: 3, images: ["/images/work/agentic-hub/1.mp4", "/images/work/agentic-hub/2.png", "/images/work/agentic-hub/3.png"], teaser: "I led design for Agentic Hub, a new way for creators to create and scale their games with agents. I defined the chat UI on web, unified interactions across Studio and mobile, and shipped features like Canvas, multi-conversations, \"thinking\", Q&A, and more." },
       { slug: "analytics", title: "Roblox Analytics Platform", date: "Mar 2026", shots: 3, images: ["/images/work/analytics/1.mp4", "/images/work/analytics/2.png", "/images/work/analytics/3.png"], teaser: "I created the data visualization system 0 to 1 and scaled it for all teams at Roblox to adopt. Our team built out a full analytics suite, complete with customizable dashboards, observability, and experimentation, becoming one of the most beloved teams by our creators." },
       { slug: "zhorai", title: "Zhorai", date: "Dec 2024", shots: 3, images: ["/images/work/zhorai/1.mp4", "/images/work/zhorai/2.png", "/images/work/zhorai/3.mp4"], teaser: "I founded a K-12 AI literacy platform that utilizes novel conversational agent interactions to engage learners with basic AI concepts and provides scaffolded opportunities to create with AI. Ran a pilot program with 10+ families and initiated partnerships with schools." },
-      { slug: "summit", title: "CZI Summit Learning Platform", date: "Feb 2025", shots: 3, images: ["/images/work/summit/1.png", "/images/work/summit/2.png", "/images/work/summit/3.png"], teaser: "I co-led the rearchitecture of our learning platform to accommodate any type of curricula and assessments." },
-      { slug: "self-directed", title: "CZI Self-Directed Learning", date: "Feb 2025", shots: 3, images: ["/images/work/self-directed/1.mp4", "/images/work/self-directed/2.png", "/images/work/self-directed/3.png"], teaser: "I was founding designer on a new product bet where we explored how to empower students to take charge of their own learning. We created an interest exploration tool that exposed students to new fields and ideas, and then connected established interests to skills they practiced in class." }
+      { slug: "summit", title: "CZI Summit Learning Platform", date: "Dec 2022", shots: 3, images: ["/images/work/summit/1.png", "/images/work/summit/2.png", "/images/work/summit/3.png"], teaser: "I co-led the rearchitecture of our learning platform to accommodate any type of curricula and assessments." },
+      { slug: "self-directed", title: "CZI Self-Directed Learning", date: "June 2023", shots: 3, images: ["/images/work/self-directed/1.mp4", "/images/work/self-directed/2.png", "/images/work/self-directed/3.png"], teaser: "I was founding designer on a new product bet where we explored how to empower students to take charge of their own learning. We created an interest exploration tool that exposed students to new fields and ideas, and then connected established interests to skills they practiced in class." }
     ]
   },
 
@@ -238,7 +238,7 @@ window.SITE = {
     meta: [
       { label: "Role", value: "Senior product designer" },
       { label: "Team", value: "2 designers, 2 researchers, 1 PM, 1 eng lead" },
-      { label: "Timeline", value: "2021" },
+      { label: "Timeline", value: "2021-2022" },
       { label: "Outcome", value: "Conducted countless educator and student interviews, iterated a ton, designed an MVP, ultimately the platform was sunset. Still lots of learnings!" }
     ],
 
@@ -277,7 +277,7 @@ window.SITE = {
     meta: [
       { label: "Role", value: "Founding designer" },
       { label: "Team", value: "1 Designer, 1 PM, 1 Eng lead" },
-      { label: "Timeline", value: "2020 - 2021" },
+      { label: "Timeline", value: "Jan - June 2023" },
       { label: "Outcome", value: "This exploration turned into a product collaboration with [GripTape](https://www.griptape.org/), a CZI program partner, where we worked with them to scale their offering of empowering young people to pursue their own passion through a self-initiated project." }
     ],
 
