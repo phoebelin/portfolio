@@ -59,7 +59,7 @@
           <div style="display: flex; align-items: baseline; gap: 10px; font-size: 14px; opacity: 0.7;">
             <sc-for list="{{ links }}" as="l" hint-placeholder-count="3">
               <span style="display: flex; align-items: baseline; gap: 10px;">
-                <a href="{{ l.href }}" style="background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 2px; transition: background-size 320ms cubic-bezier(0.4,0,0.2,1);" style-hover="background-size: 100% 1px;">{{ l.label }}</a>
+                <a href="{{ l.href }}" target="_blank" rel="noopener" style="background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 2px; transition: background-size 320ms cubic-bezier(0.4,0,0.2,1);" style-hover="background-size: 100% 1px;">{{ l.label }}</a>
                 <span style="opacity: 0.35;">{{ l.sep }}</span>
               </span>
             </sc-for>

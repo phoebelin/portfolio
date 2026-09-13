@@ -114,7 +114,7 @@
       <p style="margin: 0; font-size: 14.5px; line-height: 1.62; opacity: 0.82; text-wrap: pretty;">{{ outcome }}</p>
     </div>
 
-    <a href="/work/agentic-hub" style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 18px; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);">
+    <a href="{{ nextHref }}" style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 18px; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);">
       <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.45;">Next</span>
       <span style="font-family: 'Newsreader', serif; font-size: 20px;">{{ nextTitle }} →</span>
     </a>
@@ -160,7 +160,7 @@
         <p style="margin: 0; font-size: 14.5px; line-height: 1.62; opacity: 0.82; text-wrap: pretty;">{{ outcome }}</p>
       </div>
 
-      <a href="/work/agentic-hub" style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 18px; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);">
+      <a href="{{ nextHref }}" style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 18px; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);">
         <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.45;">Next</span>
         <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'Newsreader', serif; font-size: 22px; transition: gap 300ms cubic-bezier(0.4,0,0.2,1);" style-hover="gap: 20px;">{{ nextTitle }}<span style="font-size: 14px; opacity: 0.4;">→</span></span>
       </a>
@@ -281,15 +281,30 @@ class Component extends DCLogic {
     const HOME = (S().home || {}).projects || [];
     const WORK = ((SLUG && HOME.find((p) => p.slug === SLUG)) || HOME[0] || {}).images || [];
     const srcFor = (i, item) => (item && item.src) || WORK[i] || "";
+    // Rich text: wrap words in *asterisks* in content.js to italicize them.
+    const rich = (str) => {
+      if (typeof str !== "string" || str.indexOf("*") < 0) return str;
+      const R = window.React, out = [];
+      const re = /\*([^*]+)\*/g;
+      let last = 0, m, k = 0;
+      while ((m = re.exec(str))) {
+        if (m.index > last) out.push(str.slice(last, m.index));
+        out.push(R.createElement("em", { key: k++ }, m[1]));
+        last = re.lastIndex;
+      }
+      if (last < str.length) out.push(str.slice(last));
+      return out;
+    };
     const v = {
       name: S().name,
       title: CS.title,
-      subtitle: CS.subtitle,
+      subtitle: rich(CS.subtitle),
       nextTitle: CS.nextTitle,
-      context: CS.context,
-      outcome: CS.outcome,
+      nextHref: CS.nextSlug ? ("/work/" + CS.nextSlug) : "/",
+      context: rich(CS.context),
+      outcome: rich(CS.outcome),
       meta: CS.meta || [],
-      decisions: CS.decisions || [],
+      decisions: (CS.decisions || []).map((d) => Object.assign({}, d, { title: rich(d.title), body: rich(d.body) })),
       gallery: GALLERY.map((g, i) => Object.assign({}, g, media(srcFor(i, g)), { open: () => this.setState({ lb: i }) })),
       bg: s.dark ? "#131312" : "#fbfbf9",
       fg: s.dark ? "#eceae4" : "#171714",
