@@ -120,7 +120,7 @@ window.SITE = {
 
     decisions: [
       { num: "01", title: "The agent works; the creator leads", body: "How do we balance agents working autonomously towards a goal while surfacing important decisions appropriately for creator approval?" },
-      { num: "02", title: "A unified audit ledger", body: "When agents make mistakes, how do we surface them to the creator in a way that is easy to understand and action on?" },
+      { num: "02", title: "Safety and oversight at its core", body: "When agents make mistakes, how do we surface them to the creator in a way that is easy to understand and action on? How do we prevent hallucinations and give creators the ability to audit and develop within a safe ecosystem?" },
       { num: "03", title: "Vertically integrated context", body: "How do we capture value that leans into the strengths of the Roblox ecosystem?" }
     ],
 
@@ -140,11 +140,11 @@ window.SITE = {
       { col: "span 3", ratio: "16 / 10", caption: "02 — A still of the chat UI on web" },
       { col: "span 3", ratio: "16 / 10", caption: "03 — Build on mobile" },
       { col: "span 3", ratio: "16 / 10", caption: "04 — Analytics in Build", src: "/images/work/agentic-hub/gallery/04.png" },
-      { col: "span 2", ratio: "16 / 10", caption: "05 — Empty state", src: "/images/work/agentic-hub/gallery/05.png" },
-      { col: "span 2", ratio: "16 / 10", caption: "06 — Pricing pass", src: "/images/work/agentic-hub/gallery/06.png" },
-      { col: "span 2", ratio: "16 / 10", caption: "07 — Localization pass", src: "/images/work/agentic-hub/gallery/07.png" },
-      { col: "span 3", ratio: "16 / 10", caption: "08 — Mobile check", src: "/images/work/agentic-hub/gallery/08.png" },
-      { col: "span 3", ratio: "16 / 10", caption: "09 — Explorations, cut", src: "/images/work/agentic-hub/gallery/09.png" }
+      { col: "span 2", ratio: "16 / 10", caption: "05 — Concept of landing page with unified ledger", src: "/images/work/agentic-hub/gallery/05.png" },
+      { col: "span 2", ratio: "16 / 10", caption: "06 — Concept of multiplayer prompting", src: "/images/work/agentic-hub/gallery/06.png" },
+      { col: "span 2", ratio: "16 / 10", caption: "07 — Concept of scheduled cron jobs", src: "/images/work/agentic-hub/gallery/07.png" },
+      //{ col: "span 3", ratio: "16 / 10", caption: "08 — Mobile check", src: "/images/work/agentic-hub/gallery/08.png" },
+      //{ col: "span 3", ratio: "16 / 10", caption: "09 — Explorations, cut", src: "/images/work/agentic-hub/gallery/09.png" }
     ]
   },
 
