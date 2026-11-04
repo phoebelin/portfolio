@@ -9,7 +9,7 @@ window.SITE = {
   footerNote: "Designed by me, made with AI",
 
   home: {
-    intro: "Currently, I design agentic workflows to help creators grow and scale their games as businesses at Roblox. Before that, I designed for K-12 education at Chan Zuckerberg Initiative. As a designer, I'm interested in how we design for uncertainty and learning in the era of AI. I'm good at taking complex, ambiguous spaces, and turning it into things that are intuitive and simple.",
+    intro: "Currently, I design agentic workflows to help creators grow and scale their games as businesses at Roblox. Before that, I designed for K-12 and college readiness at Chan Zuckerberg Initiative. As a designer, I'm interested in how we design for uncertainty and learning in the era of AI. I'm good at taking complex, ambiguous spaces, and turning it into things that are intuitive and simple.",
     // images = the picture OR video files shown under each project (also opened
     //   in the lightbox). Drop files in /images/work/<slug>/ and list them here
     //   in the order you want. .mp4/.webm/.mov files autoplay on a silent loop,
