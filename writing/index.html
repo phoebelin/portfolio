@@ -15,6 +15,8 @@
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
 <link rel="icon" media="(prefers-color-scheme: dark)" type="image/png" href="/favicon-32-dark.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- Self-host React UMD so networks that block unpkg.com can still load the site -->
+<script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js":"/vendor/react.production.min.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"/vendor/react-dom.production.min.js"};</script>
 <script src="/support.js"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "264c9ffe23c24515bafd24148fb4ceab"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
